@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Token Buddy – installer</title>
+<meta name="description" content="A pixel desk robot for the ESP32 CYD 2.8 that shows your Claude Code usage limits. Install it from the browser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<script type="module" src="https://unpkg.com/esp-web-tools@10.1.0/dist/web/install-button.js?module"></script>
+<style>
+  :root { --bg:#fff7ef; --ink:#461c08; --orange:#ff8c00; --card:#ffffff; --muted:#7a5a48; --line:#f0d8c4; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#1b120c; --ink:#f5e8cd; --card:#261910; --muted:#c9ad94; --line:#3a2718; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.6 system-ui, sans-serif; }
+  main { max-width:760px; margin:0 auto; padding:32px 16px 64px; }
+  h1, h2 { font-family:"Press Start 2P", monospace; line-height:1.5; }
+  h1 { font-size:26px; margin:8px 0 4px; color:var(--orange); }
+  h2 { font-size:15px; margin:0 0 12px; }
+  .lead { color:var(--muted); margin:0 0 28px; }
+  .step { background:var(--card); border:2px solid var(--line); border-radius:12px; padding:20px; margin:16px 0; }
+  .num { display:inline-block; background:var(--orange); color:#fff; font-family:"Press Start 2P",monospace; font-size:12px; padding:6px 9px; border-radius:6px; margin-right:8px; }
+  .btn, esp-web-install-button button { display:inline-block; background:var(--orange); color:#fff; border:0; border-radius:8px; padding:12px 20px; font:600 16px system-ui; text-decoration:none; cursor:pointer; }
+  ol, ul { padding-left:22px; } li { margin:4px 0; }
+  code { background:var(--line); padding:1px 6px; border-radius:4px; }
+  .note { color:var(--muted); font-size:14px; }
+  .bot { display:block; margin:0 0 8px; }
+  footer { margin-top:32px; color:var(--muted); font-size:13px; }
+</style>
+</head>
+<body>
+<main>
+  <svg class="bot" width="96" height="88" viewBox="0 0 12 11" shape-rendering="crispEdges" aria-hidden="true">
+    <rect x="5" y="0" width="2" height="1" fill="#ffaf14"/><rect x="5.75" y="1" width=".5" height="1" fill="#b85e18"/>
+    <rect x="1" y="2" width="10" height="6" fill="#e8873a"/><rect x="0" y="4" width="1" height="2" fill="#b85e18"/><rect x="11" y="4" width="1" height="2" fill="#b85e18"/>
+    <rect x="2" y="3" width="8" height="4" fill="#3a2412"/><rect x="3.4" y="4" width="1" height="1.4" fill="#fff"/><rect x="7.6" y="4" width="1" height="1.4" fill="#fff"/>
+    <rect x="3" y="8" width="2" height="1" fill="#b85e18"/><rect x="7" y="8" width="2" height="1" fill="#b85e18"/>
+    <rect x="2" y="9" width="3" height="1" fill="#b85e18"/><rect x="7" y="9" width="3" height="1" fill="#b85e18"/>
+  </svg>
+  <h1>Token Buddy</h1>
+  <p class="lead">A pixel desk robot for the ESP32 CYD 2.8" that shows your Claude Code usage limits, reacts while Claude works and while you type.</p>
+
+  <section class="step">
+    <h2><span class="num">1</span>Install on the CYD</h2>
+    <p>Plug the CYD into this computer with a USB cable and click the button. Works in <b>Chrome</b> or <b>Edge</b> on a computer.</p>
+    <esp-web-install-button manifest="manifest.json">
+      <button slot="activate">Install on CYD</button>
+      <span slot="unsupported">Your browser can't do this: open the page in Chrome or Edge on a computer.</span>
+      <span slot="not-allowed">This page must be opened over https.</span>
+    </esp-web-install-button>
+    <p class="note">If no device shows up, install the USB driver for the CH340 chip and try again.</p>
+  </section>
+
+  <section class="step">
+    <h2><span class="num">2</span>Connect it to WiFi</h2>
+    <ol>
+      <li>After the install the CYD creates a WiFi network called <code>TokenBuddy-Setup</code>.</li>
+      <li>Join it with your phone, pick your home WiFi and type its password.</li>
+      <li>The CYD restarts and connects. Done.</li>
+    </ol>
+  </section>
+
+  <section class="step">
+    <h2><span class="num">3</span>Install the bridge on your PC</h2>
+    <p>The bridge reads your Claude Code usage and tells the CYD. Windows only for now; you need Claude Code logged in and <a href="https://www.python.org/downloads/">Python 3</a>.</p>
+    <p><a class="btn" href="https://github.com/aquascape123/token-buddy/archive/refs/heads/main.zip">Download Token Buddy</a></p>
+    <ol>
+      <li>Unzip it, open the <code>bridge</code> folder and double-click <code>install_windows.bat</code>.</li>
+      <li>If Windows asks about the firewall, allow access on <b>private networks</b>.</li>
+      <li>The CYD finds the bridge by itself within a few seconds.</li>
+    </ol>
+  </section>
+
+  <section class="step">
+    <h2><span class="num">4</span>Make it yours</h2>
+    <ul>
+      <li>Open <code>http://tokenbuddy.local</code> to pick a color theme or make your own.</li>
+      <li>Hold the screen for a second to switch theme; tap it to peek at your limits.</li>
+      <li>Print the pixel robot case: files in the <a href="https://github.com/aquascape123/token-buddy/tree/main/case">case</a> folder.</li>
+    </ul>
+  </section>
+
+  <footer>
+    Open source on <a href="https://github.com/aquascape123/token-buddy">GitHub</a> · MIT license.<br>
+    Unofficial fan project, not affiliated with or endorsed by Anthropic. Usage data comes from an undocumented endpoint and may stop working.
+  </footer>
+</main>
+</body>
+</html>

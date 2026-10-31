@@ -1,0 +1,6 @@
+# vecchio contenitore a forma di mascotte: non va pubblicato
+contenitore/
+
+__pycache__/
+*.pyc
+build/
