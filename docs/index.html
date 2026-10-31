@@ -25,6 +25,8 @@
   code { background:var(--line); padding:1px 6px; border-radius:4px; }
   .note { color:var(--muted); font-size:14px; }
   .bot { display:block; margin:0 0 8px; }
+  .boards { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px; margin:12px 0; }
+  .board { border:2px solid var(--line); border-radius:10px; padding:14px; display:flex; flex-direction:column; gap:8px; align-items:flex-start; }
   footer { margin-top:32px; color:var(--muted); font-size:13px; }
 </style>
 </head>
@@ -38,17 +40,31 @@
     <rect x="2" y="9" width="3" height="1" fill="#b85e18"/><rect x="7" y="9" width="3" height="1" fill="#b85e18"/>
   </svg>
   <h1>Token Buddy</h1>
-  <p class="lead">A pixel desk robot for the ESP32 CYD 2.8" that shows your Claude Code usage limits, reacts while Claude works and while you type.</p>
+  <p class="lead">A pixel desk robot for the ESP32 CYD 2.8" and 2.4" that shows your Claude Code usage limits, reacts while Claude works and while you type.</p>
 
   <section class="step">
     <h2><span class="num">1</span>Install on the CYD</h2>
-    <p>Plug the CYD into this computer with a USB cable and click the button. Works in <b>Chrome</b> or <b>Edge</b> on a computer.</p>
-    <esp-web-install-button manifest="manifest.json">
-      <button slot="activate">Install on CYD</button>
-      <span slot="unsupported">Your browser can't do this: open the page in Chrome or Edge on a computer.</span>
-      <span slot="not-allowed">This page must be opened over https.</span>
-    </esp-web-install-button>
-    <p class="note">If no device shows up, install the USB driver for the CH340 chip and try again.</p>
+    <p>Plug the CYD into this computer with a USB cable, then click the button for your model. Works in <b>Chrome</b> or <b>Edge</b> on a computer.</p>
+    <div class="boards">
+      <div class="board">
+        <b>CYD 2.8"</b><span class="note">ESP32-2432S028R</span>
+        <esp-web-install-button manifest="manifest_cyd28.json">
+          <button slot="activate">Install 2.8"</button>
+          <span slot="unsupported">Open this page in Chrome or Edge on a computer.</span>
+          <span slot="not-allowed">This page must be opened over https.</span>
+        </esp-web-install-button>
+      </div>
+      <div class="board">
+        <b>CYD 2.4"</b><span class="note">ESP32-2432S024R</span>
+        <esp-web-install-button manifest="manifest_cyd24.json">
+          <button slot="activate">Install 2.4"</button>
+          <span slot="unsupported">Open this page in Chrome or Edge on a computer.</span>
+          <span slot="not-allowed">This page must be opened over https.</span>
+        </esp-web-install-button>
+      </div>
+    </div>
+    <p class="note">Not sure which one? Measure the screen diagonal. If you pick the wrong one the screen stays black: just install the other.<br>
+    If no device shows up, install the USB driver for the CH340 chip and try again.</p>
   </section>
 
   <section class="step">

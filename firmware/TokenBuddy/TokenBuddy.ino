@@ -50,12 +50,27 @@ const uint32_t GOOD_ALERT_MS = 300000;   // "di nuovo disponibile" sparisce dopo
 #define SPK_PIN 26
 #define SPK_CH  4                     // canale LEDC per i toni
 
+// modello di CYD: la configurazione dello schermo arriva da tools/build_firmware.py
+// (-DTOKENBUDDY_CYD24 per il 2.4", altrimenti 2.8")
+#ifdef TOKENBUDDY_CYD24
+const char* BOARD_NAME = "CYD 2.4";
+// touch XPT2046 sugli stessi pin dello schermo
+#define T_IRQ  36
+#define T_MOSI 13
+#define T_MISO 12
+#define T_CLK  14
+#define T_CS   33
+#define TOUCH_SPI_HOST HSPI
+#else
+const char* BOARD_NAME = "CYD 2.8";
 // touch XPT2046 (bus SPI separato dal display)
 #define T_IRQ  36
 #define T_MOSI 32
 #define T_MISO 39
 #define T_CLK  25
 #define T_CS   33
+#define TOUCH_SPI_HOST VSPI
+#endif
 
 #define RGB(r, g, b) (uint16_t)((((r) & 0xF8) << 8) | (((g) & 0xFC) << 3) | ((b) >> 3))
 // colori del tema attivo (impostati da applyColors, scelti dalla pagina web)
@@ -106,7 +121,7 @@ int themeIdx = 0;
 TFT_eSPI tft;
 TFT_eSprite eye(&tft);
 TFT_eSprite row(&tft);
-SPIClass touchSPI(VSPI);
+SPIClass touchSPI(TOUCH_SPI_HOST);
 XPT2046_Touchscreen ts(T_CS, T_IRQ);
 
 enum CC { CC_IDLE, CC_WORKING, CC_DONE, CC_WAITING };
@@ -981,13 +996,16 @@ void setup() {
   led(false, false, true);    // blu = avvio
 
   tft.init();
-  // i CYD escono con colori slavati: riselezionare la curva gamma li ravviva
+#ifdef ILI9341_2_DRIVER
+  // i CYD 2.8 escono con colori slavati: riselezionare la curva gamma li ravviva
   tft.writecommand(0x26);     // ILI9341 GAMMASET
   tft.writedata(2);
   delay(120);
   tft.writecommand(0x26);
   tft.writedata(1);
+#endif
   tft.setRotation(1);         // orizzontale; prova 3 se e' capovolto
+  Serial.printf("Token Buddy su %s\n", BOARD_NAME);
   loadTheme();
   tft.fillScreen(C_BG);
   eye.setColorDepth(16);

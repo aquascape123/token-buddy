@@ -1,0 +1,28 @@
+{
+  "name": "Token Buddy - CYD 2.4\" (ESP32-2432S024R)",
+  "version": "1.1.0",
+  "new_install_prompt_erase": true,
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        {
+          "path": "firmware/cyd24/bootloader.bin",
+          "offset": 4096
+        },
+        {
+          "path": "firmware/cyd24/partitions.bin",
+          "offset": 32768
+        },
+        {
+          "path": "firmware/cyd24/boot_app0.bin",
+          "offset": 57344
+        },
+        {
+          "path": "firmware/cyd24/firmware.bin",
+          "offset": 65536
+        }
+      ]
+    }
+  ]
+}

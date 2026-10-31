@@ -1,6 +1,6 @@
 # Token Buddy
 
-A pixel desk robot for the **ESP32 CYD 2.8"** (ESP32-2432S028R) that shows your **Claude Code usage limits**, reacts while Claude works and while you type.
+A pixel desk robot for the **ESP32 CYD 2.8"** (ESP32-2432S028R) and **2.4"** (ESP32-2432S024R) that shows your **Claude Code usage limits**, reacts while Claude works and while you type.
 
 **Install from the browser:** https://aquascape123.github.io/token-buddy/
 
@@ -25,13 +25,13 @@ A pixel desk robot for the **ESP32 CYD 2.8"** (ESP32-2432S028R) that shows your 
 
 ## What you need
 
-- ESP32 CYD 2.8" (ESP32-2432S028R) with USB cable
+- ESP32 CYD 2.8" (ESP32-2432S028R) or 2.4" (ESP32-2432S024R), with USB cable
 - A Windows PC with [Claude Code](https://docs.claude.com/en/docs/claude-code) logged in, and [Python 3](https://www.python.org/downloads/)
 - PC and CYD on the same WiFi network
 
 ## Install
 
-1. **CYD:** open the [installer page](https://aquascape123.github.io/token-buddy/) in Chrome or Edge, plug in the CYD and click *Install on CYD*.
+1. **CYD:** open the [installer page](https://aquascape123.github.io/token-buddy/) in Chrome or Edge, plug in the CYD and click the button for your model (2.8" or 2.4").
 2. **WiFi:** join the `TokenBuddy-Setup` network with your phone and choose your WiFi.
 3. **PC:** download this repository, open `bridge` and double-click `install_windows.bat`. Allow private-network access if the firewall asks.
 
@@ -56,12 +56,19 @@ Claude Code ──hooks (curl)──► bridge on your PC ◄──── CYD (p
 
 ## Build the firmware yourself
 
-Arduino IDE / arduino-cli with the ESP32 core 2.0.x, board *ESP32 Dev Module*, and these libraries: **TFT_eSPI** (use `firmware/TokenBuddy/User_Setup.h`), **ArduinoJson 7**, **WiFiManager**, **XPT2046_Touchscreen**.
+Needs [arduino-cli](https://arduino.github.io/arduino-cli/) (or the Arduino IDE) with the ESP32 core 2.0.x and these libraries: **TFT_eSPI**, **ArduinoJson 7**, **WiFiManager**, **XPT2046_Touchscreen**.
+
+```
+python tools/build_firmware.py              # builds both boards into docs/
+python tools/build_firmware.py cyd24 COM5   # builds the 2.4" and uploads it
+```
+
+The display settings for each board are passed to the compiler, so you don't need to edit TFT_eSPI's `User_Setup.h`. `firmware/TokenBuddy/User_Setup.h` is the 2.8" setup, kept for building from the Arduino IDE.
 
 ## Troubleshooting
 
 - **"Looking for the bridge..."** – is the bridge running? Is the PC on the same network? Allow Python through the Windows firewall on private networks.
-- **Washed-out colors** – the firmware already fixes the CYD gamma; if your board is the 2-USB variant, switch the driver in `User_Setup.h` to `ST7789_DRIVER`.
+- **Black screen, LED on** – you installed the firmware for the other model: install the 2.4" one on a 2.4" board and vice versa.
 - **Upside-down screen** – change `setRotation(1)` to `setRotation(3)`.
 
 ## License
@@ -72,11 +79,11 @@ MIT – see [LICENSE.md](LICENSE.md).
 
 # Token Buddy (italiano)
 
-Un robottino pixel da scrivania per il **CYD 2.8"** che mostra i tuoi **limiti di utilizzo di Claude Code**, reagisce quando Claude lavora e mentre scrivi.
+Un robottino pixel da scrivania per il **CYD 2.8"** e **2.4"** che mostra i tuoi **limiti di utilizzo di Claude Code**, reagisce quando Claude lavora e mentre scrivi.
 
 **Installazione dal browser:** https://aquascape123.github.io/token-buddy/
 
-1. **CYD:** apri la pagina di installazione con Chrome o Edge, collega il CYD via USB e clicca *Install on CYD*.
+1. **CYD:** apri la pagina di installazione con Chrome o Edge, collega il CYD via USB e clicca il pulsante del tuo modello (2.8" o 2.4").
 2. **WiFi:** col telefono collegati alla rete `TokenBuddy-Setup` e scegli il tuo WiFi.
 3. **PC:** scarica questo repository, apri la cartella `bridge` e fai doppio clic su `install_windows.bat` (serve Python 3 e Claude Code con login fatto).
 
