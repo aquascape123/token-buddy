@@ -2,7 +2,10 @@
 
 A pixel desk robot for the **ESP32 CYD 2.8"** (ESP32-2432S028R) and **2.4"** (ESP32-2432S024R) that shows your **Claude Code usage limits**, reacts while Claude works and while you type.
 
+![Token Buddy](media/token_buddy_cover.png)
+
 **Install from the browser:** https://aquascape123.github.io/token-buddy/
+**Print the case:** https://makerworld.com/models/3528498
 
 > Unofficial fan project, not affiliated with or endorsed by Anthropic. The usage numbers come from the same undocumented endpoint Claude Code uses for `/usage`: it may change and stop working without notice.
 
@@ -21,7 +24,7 @@ A pixel desk robot for the **ESP32 CYD 2.8"** (ESP32-2432S028R) and **2.4"** (ES
 - **Themes:** 6 ready-made color themes plus a custom one, chosen from a web page served by the CYD (`http://tokenbuddy.local`) or by holding the screen.
 - **Touch:** tap to peek at your limits while it sleeps, hold to switch theme.
 - **Sound (optional):** key clicks and a startup chime if you plug an 8 Ω speaker into the `SPEAK` connector.
-- **Case:** a 3D-printable pixel robot, one piece plus a snap-on grid cover, no screws, no supports (~35 g PLA).
+- **Case:** a 3D-printable pixel robot, one piece plus a snap-on grid cover, no screws, no supports (~35 g PLA). Files for both boards in [`case/`](case) (`_cyd28` / `_cyd24`); `case/make_case.py` rebuilds them in Autodesk Fusion.
 
 ## What you need
 
@@ -82,6 +85,7 @@ MIT – see [LICENSE.md](LICENSE.md).
 Un robottino pixel da scrivania per il **CYD 2.8"** e **2.4"** che mostra i tuoi **limiti di utilizzo di Claude Code**, reagisce quando Claude lavora e mentre scrivi.
 
 **Installazione dal browser:** https://aquascape123.github.io/token-buddy/
+**Case da stampare:** https://makerworld.com/models/3528498
 
 1. **CYD:** apri la pagina di installazione con Chrome o Edge, collega il CYD via USB e clicca il pulsante del tuo modello (2.8" o 2.4").
 2. **WiFi:** col telefono collegati alla rete `TokenBuddy-Setup` e scegli il tuo WiFi.

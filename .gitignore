@@ -4,3 +4,8 @@ contenitore/
 __pycache__/
 *.pyc
 build/
+
+# file di lavoro delle copertine (foto ritagliate) e testi per MakerWorld
+media/work/
+media/*.jpg
+media/makerworld_listing.md
